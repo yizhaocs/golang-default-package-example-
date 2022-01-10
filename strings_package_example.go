@@ -45,8 +45,8 @@ func main() {
 			/*
 				LastIndex returns the index of the last instance of substr in s, or -1 if substr is not present in s.
 			*/
-			fmt.Println(strings.Index("go gopher", "go")) // 0
-			fmt.Println(strings.LastIndex("go gopher", "go")) // 3
+			fmt.Println(strings.Index("go gopher", "go"))         // 0
+			fmt.Println(strings.LastIndex("go gopher", "go"))     // 3
 			fmt.Println(strings.LastIndex("go gopher", "rodent")) // -1
 		}
 		{
@@ -55,9 +55,9 @@ func main() {
 				LastIndexAny returns the index of the last instance of any Unicode code point from chars in s,
 				or -1 if no Unicode code point from chars is present in s.
 			*/
-			fmt.Println(strings.LastIndexAny("go gopher", "go")) // 4
+			fmt.Println(strings.LastIndexAny("go gopher", "go"))     // 4
 			fmt.Println(strings.LastIndexAny("go gopher", "rodent")) // 8
-			fmt.Println(strings.LastIndexAny("go gopher", "fail")) // -1
+			fmt.Println(strings.LastIndexAny("go gopher", "fail"))   // -1
 		}
 	}
 	{
@@ -159,11 +159,11 @@ func main() {
 				If sep is empty, Split splits after each UTF-8 sequence. If both s and sep are empty, Split returns an empty slice.
 
 				It is equivalent to SplitN with a count of -1.
-			 */
-			fmt.Printf("%q\n", strings.Split("a,b,c", ",")) // ["a" "b" "c"]
+			*/
+			fmt.Printf("%q\n", strings.Split("a,b,c", ","))                        // ["a" "b" "c"]
 			fmt.Printf("%q\n", strings.Split("a man a plan a canal panama", "a ")) // ["" "man " "plan " "canal panama"]
-			fmt.Printf("%q\n", strings.Split(" xyz ", "")) // [" " "x" "y" "z" " "]
-			fmt.Printf("%q\n", strings.Split("", "Bernardo O'Higgins")) // [""]
+			fmt.Printf("%q\n", strings.Split(" xyz ", ""))                         // [" " "x" "y" "z" " "]
+			fmt.Printf("%q\n", strings.Split("", "Bernardo O'Higgins"))            // [""]
 		}
 		{
 			fmt.Println("***************** SplitAfter ***************** ")
@@ -243,6 +243,52 @@ func main() {
 			*/
 			s := []string{"foo", "bar", "baz"}
 			fmt.Println(strings.Join(s, ", ")) // foo, bar, baz
+		}
+	}
+
+	{
+		fmt.Println("******************************************************************** ")
+		fmt.Println("******************************* 更换 *******************************")
+		fmt.Println("******************************************************************** ")
+		{
+			fmt.Println("***************** Replace ***************** ")
+			/*
+				Replace returns a copy of the string s with the first n non-overlapping instances of old replaced by new.
+				If old is empty, it matches at the beginning of the string and after each UTF-8 sequence,
+				yielding up to k+1 replacements for a k-rune string.
+				If n < 0, there is no limit on the number of replacements.
+			*/
+			fmt.Println(strings.Replace("oink oink oink", "k", "ky", 2))      // oinky oinky oink
+			fmt.Println(strings.Replace("oink oink oink", "oink", "moo", -1)) // moo moo moo
+		}
+		{
+			fmt.Println("***************** ReplaceAll ***************** ")
+			/*
+				ReplaceAll returns a copy of the string s with all non-overlapping instances of old replaced by new.
+				If old is empty, it matches at the beginning of the string and after each UTF-8 sequence,
+				yielding up to k+1 replacements for a k-rune string.
+			*/
+			fmt.Println(strings.ReplaceAll("oink oink oink", "oink", "moo")) // moo moo moo
+		}
+	}
+
+	{
+		fmt.Println("******************************************************************** ")
+		fmt.Println("******************************* 大小写转换 *******************************")
+		fmt.Println("******************************************************************** ")
+		{
+			fmt.Println("***************** ToLower ***************** ")
+			/*
+				ToLower returns s with all Unicode letters mapped to their lower case.
+			*/
+			fmt.Println(strings.ToLower("Gopher")) // gopher
+		}
+		{
+			fmt.Println("***************** ToUpper ***************** ")
+			/*
+				ToUpper returns s with all Unicode letters mapped to their upper case.
+			*/
+			fmt.Println(strings.ToUpper("Gopher")) // GOPHER
 		}
 	}
 }
