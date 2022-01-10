@@ -5,7 +5,10 @@ import (
 	"strings"
 	"unicode"
 )
-
+/*
+	RFE:
+		https://pkg.go.dev/strings@go1.17.6
+ */
 func main() {
 	ex1 := "Ace of Spades 1"
 	{
