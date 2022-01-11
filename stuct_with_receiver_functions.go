@@ -45,6 +45,7 @@ func main() {
 }
 
 /*
+	如果function的argument中的data type定义前有*，则其不算是pointer，只能算是说这个function的这个argument可以接收一个pointer。
 	when we see a star in front of a type,
 	it means something completely different than when we see a star in front of an actual pointer.
 	So in the receiver, we said that pointer to person is a value of type star person.
