@@ -44,8 +44,22 @@ func main() {
 	}
 }
 
+/*
+	when we see a star in front of a type,
+	it means something completely different than when we see a star in front of an actual pointer.
+	So in the receiver, we said that pointer to person is a value of type star person.
+
+	Whenever you see a star and then some anything basically any word whatsoever in a place where a type is supposed to be.
+
+	But when we see that star in front of an actual type, that is a type description,
+	and it means that this update name function can only be called with the receiver of a pointer to a person.
+*/
 func (pointerToPerson *person4) updateName(newFirstName string) {
-	pointerToPerson.firstName = newFirstName
+	/*
+		So this little parentheses block right here, this thing right here gets turned into the actual yi2
+		person that is sitting in memory.
+	*/
+	(*pointerToPerson).firstName = newFirstName
 }
 
 func (p person4) print() {
