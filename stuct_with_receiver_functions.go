@@ -22,22 +22,30 @@ func main() {
 			zipCode: 94000,
 		},
 	} // 推荐这种写法
-	fmt.Printf("%+v \n", yi2) // {firstName:Yi2 lastName:Zhao2 contact:{email:yi@gmail.com zipCode:94000}}
+	{
+		fmt.Printf("%+v \n", yi2) // {firstName:Yi2 lastName:Zhao2 contact:{email:yi@gmail.com zipCode:94000}}
+	}
+	{
+		/*
+			############### func (p person4) print() ###############
+			{firstName:Yi2 lastName:Zhao2 contact:{email:yi@gmail.com zipCode:94000}}
+		*/
+		yi2.print()
+	}
 
-	/*
-		############### func (p person4) print() ###############
-		{firstName:Yi2 lastName:Zhao2 contact:{email:yi@gmail.com zipCode:94000}}
-	*/
-	yi2.print()
-
-
-	yi2.updateName("abcd")
-	yi2.print()
-
+	{
+		yi2Pointer := &yi2 // 因为golang是一种pass by value语言，所以要用pointer将原内存地址赋予到pointer
+		yi2Pointer.updateName("abcd")
+		/*
+			############### func (p person4) print() ###############
+			{firstName:abcd lastName:Zhao2 contact:{email:yi@gmail.com zipCode:94000}}
+		*/
+		yi2.print()
+	}
 }
 
-func (p person4) updateName(newFirstName string) {
-	p.firstName = newFirstName
+func (pointerToPerson *person4) updateName(newFirstName string) {
+	pointerToPerson.firstName = newFirstName
 }
 
 func (p person4) print() {
