@@ -11,9 +11,9 @@ func main()  {
 }
 
 func error_example(filename string)  {
-	bytes, err := ioutil.ReadFile(filename)
-	if err != nil { // 如果出错为nil则print出错误并且退出程序
-		fmt.Println("Error:", err)
+	bytes, error := ioutil.ReadFile(filename)
+	if error != nil { // 如果出错为nil则print出错误并且退出程序
+		fmt.Println("Error:", error)
 		os.Exit(1)
 	}
 
