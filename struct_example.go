@@ -23,6 +23,6 @@ func main(){
 		yi3.firstName = "Yi3"
 		yi3.lastName = "Zhao3"
 		fmt.Println(yi3) // {Yi3 Zhao3}
-		fmt.Printf("%+v", yi3) // {firstName:Yi3 lastName:Zhao3}
+		fmt.Printf("%+v \n", yi3) // {firstName:Yi3 lastName:Zhao3}
 	}
 }
