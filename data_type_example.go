@@ -32,4 +32,7 @@ func main()  {
 		b1 = true
 		fmt.Println("b1:", b1) // b1: true
 	}
+	{
+
+	}
 }
