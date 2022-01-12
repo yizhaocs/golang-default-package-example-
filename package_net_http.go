@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	resp, err := http.Get("http://google.com")
-	if err != nil {
-		fmt.Println("Error:", err)
+	response, error := http.Get("http://google.com")
+	if error != nil {
+		fmt.Println("Error:", error)
 		os.Exit(1)
 	}
 	/*
@@ -26,5 +26,5 @@ func main() {
 		X-Frame-Options:[SAMEORIGIN]
 		X-Xss-Protection:[0]] 0xc0000c8240 -1 [] false true map[] 0xc0000fc100 <nil>}
 	*/
-	fmt.Println("Response:", resp)
+	fmt.Println("Response:", response)
 }
