@@ -9,6 +9,10 @@ func main()  {
 		fmt.Println("string:", s1) // string: s1
 	}
 	{
+		mySlice := []string{"Hi", "There", "how", "are", "you?"}
+		fmt.Println("Slice:", mySlice) // Slice: [Hi There how are you?]
+	}
+	{
 		var i1 int
 		i1 = 3
 		fmt.Println("int:", i1) // int: 3
