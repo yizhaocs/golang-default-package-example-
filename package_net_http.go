@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 )
@@ -12,22 +13,27 @@ func main() {
 		fmt.Println("Error:", error)
 		os.Exit(1)
 	}
-	/*
-		Response:
-		&{200 OK 200 HTTP/1.1 1 1 map[Cache-Control:[private, max-age=0]
-		Content-Type:[text/html; charset=ISO-8859-1]
-		Date:[Wed, 12 Jan 2022 23:29:32 GMT]
-		Expires:[-1] P3p:[CP="This is not a P3P policy! See g.co/p3phelp for more info."]
-		Server:[gws]
-		Set-Cookie:[1P_JAR=2022-01-12-23;
-		expires=Fri, 11-Feb-2022 23:29:32 GMT; path=/;
-		domain=.google.com;
-		Secure NID=511=nov42aH7gIzFK78pFw4ZA9EB8SXSMfyoeVsvZ6AMx3XeXYVHGvOB8Jp7ykNLq6ev6AaSwEBPTWmpdJZkxABk-iP2mO_5V3OXzxLPfSrxZqjQakrkCT0vwFr4QgvTjWdEIcNa6h-t9j0Cg7NKItPlO0DaXOWL7PJbIlcLA0-VcA0; expires=Thu, 14-Jul-2022 23:29:32 GMT; path=/; domain=.google.com; HttpOnly]
-		X-Frame-Options:[SAMEORIGIN]
-		X-Xss-Protection:[0]] 0xc0000c8240 -1 [] false true map[] 0xc0000fc100 <nil>}
-	*/
-	fmt.Println("Response:", response)
 
+	printResponseStatus(response)
+	printResponseBody_method1(response)
+	printResponseBody_method2(response)
+
+
+}
+
+func printResponseStatus(response *http.Response){
+	fmt.Println("response.Status:", response.Status) // response.Status: 200 OK
+}
+
+func printResponseBody_method1(response *http.Response){
+	/*
+			Response: &{200 OK 200 HTTP/1.1 1 1 map[Cache-Control:[private, max-age=0] Content-Type:[text/html; charset=ISO-8859-1] Date:[Thu, 13 Jan 2022 18:01:27 GMT] Expires:[-1] P3p:[CP="This is not a P3P policy! See g.co/p3phelp for more info."] Server:[gws] Set-Cookie:[1P_JAR=2022-01-13-18; expires=Sat, 12-Feb-2022 18:01:27 GMT; path=/; domain=.google.com; Secure NID=511=hdnakqOzQCRYut8ZwUqa8r4pbPsmMAiXNxMAlqSCfJ4tN5VkXaSoYbcjcArEA6bwjyTtUZDAQUg19ZRjZ-OnZf1pK_IVl88w2YPxyaNqcyG3NluyGrRe3IgIP28d1uNefaREI2os7y9Ccsk1iXlpJ5LsIUllXJXxNsymdiFvmmU; expires=Fri, 15-Jul-2022 18:01:27 GMT; path=/; domain=.google.com; HttpOnly] X-Frame-Options:[SAMEORIGIN] X-Xss-Protection:[0]] 0xc0000be180 -1 [] false true map[] 0xc000216000 <nil>}
+		<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for." name="description"><meta content="noodp" name="robots"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"><title>Google</title>
+	*/
+	io.Copy(os.Stdout, response.Body)
+}
+
+func printResponseBody_method2(response *http.Response){
 	/*
 		So this make function right here is a built-In function in the language that takes a type of a slice.
 		And then as a second argument,
