@@ -28,7 +28,7 @@ func main() {
 		go checkLink_with_channel(link, channel)
 	}
 
-	fmt.Println(<- channel)
+	fmt.Println(<-channel)
 }
 
 func checkLink_with_channel(link string, channel chan string) {
