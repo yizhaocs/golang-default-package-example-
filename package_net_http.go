@@ -27,4 +27,19 @@ func main() {
 		X-Xss-Protection:[0]] 0xc0000c8240 -1 [] false true map[] 0xc0000fc100 <nil>}
 	*/
 	fmt.Println("Response:", response)
+
+	/*
+		So this make function right here is a built-In function in the language that takes a type of a slice.
+		And then as a second argument,
+		this is the number of elements or empty spaces that we want to slice to be initialized with.
+	*/
+	bs := make([]byte, 99999)
+	response.Body.Read(bs)
+	/*
+		<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+		<head><meta content="Search the world's information, including webpages, images, videos and more.
+		Google has many special features to help you find exactly what you're looking for.
+		" name="description"><meta content="noodp" name="robots"><meta content="text/html;
+	*/
+	fmt.Println(string(bs))
 }
